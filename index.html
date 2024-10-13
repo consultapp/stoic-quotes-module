@@ -5,15 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Stoic Quotes</title>
     <link rel="stylesheet" href="dist/css/style.css" />
+    <script src="dist/js/Stoic.class.js" defer></script>
   </head>
   <body>
-    <div class="stoic">
-      <backquote class="backquote">
-        If anyone tells you that a certain person speaks ill of you, do not make
-        excuses about what is said of you but answer, \"He was ignorant of my
-        other faults, else he would not have mentioned these alone.\"
-      </backquote>
-      <p class="author">Epictetus</p>
-    </div>
+    <script>
+      const stoic = null;
+      window.addEventListener("load", () => {
+        const stoic = new Stoic();
+        const button = document.querySelector("button");
+        button.addEventListener("click", () => {
+          console.log("stoic", stoic);
+          stoic.nextQuote();
+        });
+      });
+    </script>
+    <button>Netx</button>
   </body>
 </html>
