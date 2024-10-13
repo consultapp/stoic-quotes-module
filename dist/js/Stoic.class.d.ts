@@ -10,5 +10,7 @@ declare class Stoic {
     private instance;
     constructor(params?: Params);
     nextQuote(): void;
+    hide(): void;
+    show(): void;
 }
 //# sourceMappingURL=Stoic.class.d.ts.map

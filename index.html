@@ -12,13 +12,17 @@
       const stoic = null;
       window.addEventListener("load", () => {
         const stoic = new Stoic();
-        const button = document.querySelector("button");
+        const button = document.getElementById("next");
         button.addEventListener("click", () => {
-          console.log("stoic", stoic);
           stoic.nextQuote();
+        });
+        const button1 = document.getElementById("open");
+        button1.addEventListener("click", () => {
+          stoic.show();
         });
       });
     </script>
-    <button>Netx</button>
+    <button id="next">Next</button>
+    <button id="open">Open</button>
   </body>
 </html>

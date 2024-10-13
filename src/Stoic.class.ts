@@ -16,6 +16,7 @@ class Stoic {
       this.#getTemplate();
       this.#append();
     }
+    this.#initListeners();
   }
 
   #getTemplate() {
@@ -28,9 +29,21 @@ class Stoic {
                 faults, else he would not have mentioned these alone.\"
             </backquote>
             <p class="stoic__author">Epictetus</p>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+            </svg>
         </div>
     `;
     this.params.root = wrapper?.children[0] as HTMLDivElement;
+  }
+
+  #initListeners() {
+    this.params.root
+      ?.querySelector("svg")
+      ?.addEventListener("pointerup", () => {
+        console.log("first");
+        this.hide();
+      });
   }
 
   #append() {
@@ -39,11 +52,18 @@ class Stoic {
   }
 
   nextQuote() {
-    this.params.root?.classList.remove("stoic_show");
-    this.params.root?.classList.add("stoic_hide");
+    this.params.root?.classList.remove("stoic_showText");
+    this.params.root?.classList.add("stoic_hideText");
     setTimeout(() => {
-      this.params.root?.classList.remove("stoic_hide");
-      this.params.root?.classList.add("stoic_show");
+      this.params.root?.classList.remove("stoic_hideText");
+      this.params.root?.classList.add("stoic_showText");
     }, 500);
+  }
+
+  hide() {
+    this.params.root?.classList.add("stoic_hide");
+  }
+  show() {
+    this.params.root?.classList.remove("stoic_hide");
   }
 }

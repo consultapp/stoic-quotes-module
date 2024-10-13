@@ -43,13 +43,35 @@ $__clr__text: rgb(255, 255, 255);
     text-align: right;
   }
 
-  &_show {
+  &_showText {
     color: $__clr__text;
     transition: color 0.5s ease-in-out;
   }
-  &_hide {
+  &_hideText {
     color: transparent;
     transition: color 0.5s ease-in-out;
+  }
+
+  &_hide {
+    display: none;
+  }
+
+  & svg {
+    position: absolute;
+    right: -20px;
+    top: -20px;
+    width: 25px;
+    height: 25px;
+    stroke-width: 5px;
+    stroke: $__clr__bg;
+    animation: clrAll1 1.5s ease-out normal;
+
+    transition: transform 0.3s ease-in-out;
+    transform: rotate(0);
+  }
+  & svg:hover {
+    transition: transform 0.3s ease-in-out;
+    transform: rotate(180deg);
   }
 }
 
@@ -61,5 +83,14 @@ $__clr__text: rgb(255, 255, 255);
   100% {
     background-color: $__clr__bg;
     color: $__clr__text;
+  }
+}
+
+@keyframes clrAll1 {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
   }
 }

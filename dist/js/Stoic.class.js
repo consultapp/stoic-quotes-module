@@ -4,7 +4,7 @@ var __classPrivateFieldGet = (this && this.__classPrivateFieldGet) || function (
     if (typeof state === "function" ? receiver !== state || !f : !state.has(receiver)) throw new TypeError("Cannot read private member from an object whose class did not declare it");
     return kind === "m" ? f : kind === "a" ? f.call(receiver) : f ? f.value : state.get(receiver);
 };
-var _Stoic_instances, _Stoic_getTemplate, _Stoic_append;
+var _Stoic_instances, _Stoic_getTemplate, _Stoic_initListeners, _Stoic_append;
 class Stoic {
     constructor(params = {}) {
         _Stoic_instances.add(this);
@@ -18,16 +18,25 @@ class Stoic {
             __classPrivateFieldGet(this, _Stoic_instances, "m", _Stoic_getTemplate).call(this);
             __classPrivateFieldGet(this, _Stoic_instances, "m", _Stoic_append).call(this);
         }
+        __classPrivateFieldGet(this, _Stoic_instances, "m", _Stoic_initListeners).call(this);
     }
     nextQuote() {
         var _a, _b;
-        (_a = this.params.root) === null || _a === void 0 ? void 0 : _a.classList.remove("stoic_show");
-        (_b = this.params.root) === null || _b === void 0 ? void 0 : _b.classList.add("stoic_hide");
+        (_a = this.params.root) === null || _a === void 0 ? void 0 : _a.classList.remove("stoic_showText");
+        (_b = this.params.root) === null || _b === void 0 ? void 0 : _b.classList.add("stoic_hideText");
         setTimeout(() => {
             var _a, _b;
-            (_a = this.params.root) === null || _a === void 0 ? void 0 : _a.classList.remove("stoic_hide");
-            (_b = this.params.root) === null || _b === void 0 ? void 0 : _b.classList.add("stoic_show");
+            (_a = this.params.root) === null || _a === void 0 ? void 0 : _a.classList.remove("stoic_hideText");
+            (_b = this.params.root) === null || _b === void 0 ? void 0 : _b.classList.add("stoic_showText");
         }, 500);
+    }
+    hide() {
+        var _a;
+        (_a = this.params.root) === null || _a === void 0 ? void 0 : _a.classList.add("stoic_hide");
+    }
+    show() {
+        var _a;
+        (_a = this.params.root) === null || _a === void 0 ? void 0 : _a.classList.remove("stoic_hide");
     }
 }
 _Stoic_instances = new WeakSet(), _Stoic_getTemplate = function _Stoic_getTemplate() {
@@ -40,9 +49,18 @@ _Stoic_instances = new WeakSet(), _Stoic_getTemplate = function _Stoic_getTempla
                 faults, else he would not have mentioned these alone.\"
             </backquote>
             <p class="stoic__author">Epictetus</p>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+            </svg>
         </div>
     `;
     this.params.root = wrapper === null || wrapper === void 0 ? void 0 : wrapper.children[0];
+}, _Stoic_initListeners = function _Stoic_initListeners() {
+    var _a, _b;
+    (_b = (_a = this.params.root) === null || _a === void 0 ? void 0 : _a.querySelector("svg")) === null || _b === void 0 ? void 0 : _b.addEventListener("pointerup", () => {
+        console.log("first");
+        this.hide();
+    });
 }, _Stoic_append = function _Stoic_append() {
     if (this.params.root instanceof Node)
         document.body.append(this.params.root);

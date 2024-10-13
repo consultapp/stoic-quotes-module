@@ -31,13 +31,32 @@
   letter-spacing: 0.15rem;
   text-align: right;
 }
-.stoic_show {
+.stoic_showText {
   color: rgb(255, 255, 255);
   transition: color 0.5s ease-in-out;
 }
-.stoic_hide {
+.stoic_hideText {
   color: transparent;
   transition: color 0.5s ease-in-out;
+}
+.stoic_hide {
+  display: none;
+}
+.stoic svg {
+  position: absolute;
+  right: -20px;
+  top: -20px;
+  width: 25px;
+  height: 25px;
+  stroke-width: 5px;
+  stroke: rgb(0, 0, 0);
+  animation: clrAll1 1.5s ease-out normal;
+  transition: transform 0.3s ease-in-out;
+  transform: rotate(0);
+}
+.stoic svg:hover {
+  transition: transform 0.3s ease-in-out;
+  transform: rotate(180deg);
 }
 
 @keyframes clrAll {
@@ -48,6 +67,14 @@
   100% {
     background-color: rgb(0, 0, 0);
     color: rgb(255, 255, 255);
+  }
+}
+@keyframes clrAll1 {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
   }
 }
 
