@@ -9,16 +9,16 @@
   </head>
   <body>
     <script>
-      const stoic = null;
       window.addEventListener("load", () => {
-        const stoic = new Stoic();
+        const stoic = new Stoic({ positionX: "center", positionY: "center" });
         const button = document.getElementById("next");
         button.addEventListener("click", () => {
           stoic.nextQuote();
         });
         const button1 = document.getElementById("open");
         button1.addEventListener("click", () => {
-          stoic.show();
+          const stoic = new Stoic({ positionX: "left", positionY: "center" });
+          //   stoic.show();
         });
       });
     </script>

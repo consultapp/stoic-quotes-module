@@ -3,11 +3,13 @@ interface Params {
     width?: string;
     positionX?: "left" | "right" | "center";
     positionY?: "top" | "bottom" | "center";
+    margin?: string;
 }
+declare const initialParams: Params;
 declare class Stoic {
     #private;
     private params;
-    private instance;
+    static instance: Stoic;
     constructor(params?: Params);
     nextQuote(): void;
     hide(): void;
