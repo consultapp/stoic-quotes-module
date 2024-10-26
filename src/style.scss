@@ -1,14 +1,12 @@
+$__clr__bg: rgb(0, 0, 0);
+$__clr__text: rgb(255, 255, 255);
+
 @media (prefers-color-scheme: dark) {
-  .stoic {
-    $__clr__text: rgb(0, 0, 0);
-    $__clr__bg: rgb(255, 255, 255);
-  }
+  $__clr__text: rgb(0, 0, 0);
+  $__clr__bg: rgb(255, 255, 255);
 }
 
 .stoic {
-  $__clr__bg: rgb(0, 0, 0);
-  $__clr__text: rgb(255, 255, 255);
-
   position: fixed;
   left: calc(50% - 150px);
   top: 40%;
