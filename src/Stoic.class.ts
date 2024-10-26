@@ -1,12 +1,3 @@
-interface Params {
-  root?: HTMLDivElement;
-  width?: string;
-  positionX?: "left" | "right" | "center";
-  positionY?: "top" | "bottom" | "center";
-  margin?: string;
-  baseClassName?: string;
-}
-
 const initialParams: Params = {
   margin: "20px",
   width: "300px",
@@ -25,7 +16,9 @@ class Stoic {
       return Stoic.instance;
     }
 
-    this.params = { ...initialParams, ...params };
+    this.params = { ...initialParams };
+    this.#updateParams(params);
+
     Stoic.instance = this;
     if (!params.root) {
       this.#getOuterTemplate();
@@ -34,24 +27,6 @@ class Stoic {
     } else this.#setInnerTemplate();
 
     this.#initListeners();
-  }
-
-  #getOuterTemplate() {
-    const wrapper = document.createElement("div");
-    wrapper.innerHTML = `
-        <div class="${this.params.baseClassName}">
-            <backquote class="${this.params.baseClassName}__backquote">
-                If anyone tells you that a certain person speaks ill of you, do not make
-                excuses about what is said of you but answer, \"He was ignorant of my other
-                faults, else he would not have mentioned these alone.\"
-            </backquote>
-            <p class="${this.params.baseClassName}__author">Epictetus</p>
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
-            </svg>
-        </div>
-    `;
-    this.params.root = wrapper?.children[0] as HTMLDivElement;
   }
 
   #setInnerTemplate() {
@@ -65,16 +40,20 @@ class Stoic {
             <p class="${this.params.baseClassName}__author">Epictetus</p>
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
-            </svg>
-        </div>
-    `;
+            </svg>`;
+  }
+
+  #getOuterTemplate() {
+    const wrapper = document.createElement("div");
+    wrapper.innerHTML = `<div class="${this.params.baseClassName}"></div>`;
+    this.params.root = wrapper?.children[0] as HTMLDivElement;
+    this.#setInnerTemplate();
   }
 
   #initListeners() {
     this.params.root
       ?.querySelector("svg")
       ?.addEventListener("pointerup", () => {
-        console.log("first");
         this.hide();
       });
   }
@@ -91,7 +70,13 @@ class Stoic {
   }
 
   #updateParams(params: Params = initialParams) {
-    this.params = { ...initialParams, ...params };
+    for (const [k, v] of Object.entries(params) as [
+      k: keyof Params,
+      v: any
+    ][]) {
+      this.params[k] = v;
+    }
+
     this.#setPosition();
   }
 
@@ -101,7 +86,6 @@ class Stoic {
         case "left":
           this.params.root.style.left = this.params.margin ?? "0";
           break;
-        // return { left: this.params.margin };
         case "right":
           this.params.root.style.right = this.params.margin ?? "0";
           break;
@@ -151,7 +135,9 @@ class Stoic {
   hide() {
     this.params.root?.classList.add(`${this.params.baseClassName}_hide`);
   }
+
   show() {
+    console.log("show");
     this.params.root?.classList.remove(`${this.params.baseClassName}_hide`);
   }
 }
