@@ -1,5 +1,7 @@
+$__base__margin: 25px;
 $__clr__bg: rgb(0, 0, 0);
 $__clr__text: rgb(255, 255, 255);
+$__bp__mobile: "max-width: 475px";
 
 @media (prefers-color-scheme: dark) {
   $__clr__text: rgb(0, 0, 0);
@@ -8,7 +10,7 @@ $__clr__text: rgb(255, 255, 255);
 
 .stoic {
   position: fixed;
-  left: calc(50% - 150px);
+  left: calc(50% - min(50vw, 150px));
   top: 40%;
 
   display: grid;
@@ -19,7 +21,7 @@ $__clr__text: rgb(255, 255, 255);
 
   font-family: Montserrat, sans-serif;
 
-  width: 300px;
+  width: min(100vw, 300px);
   padding: 25px;
 
   border-radius: 15px;
@@ -27,6 +29,12 @@ $__clr__text: rgb(255, 255, 255);
   background-color: $__clr__bg;
   color: $__clr__text;
   animation: clrAll 1.5s ease-out normal;
+
+  @media screen and ($__bp__mobile) {
+    left: 0;
+    right: 0;
+    width: auto;
+  }
 
   & * {
     padding: 0;
@@ -73,13 +81,28 @@ $__clr__text: rgb(255, 255, 255);
 
     transition: transform 0.3s ease-in-out;
     transform: rotate(0);
+
+    @media screen and ($__bp__mobile) {
+      top: 5px;
+      right: 5px;
+
+      stroke: $__clr__text;
+    }
   }
   & svg:hover {
     transition: transform 0.3s ease-in-out;
     transform: rotate(180deg);
   }
-}
 
+  @each $position in (top, bottom, left, right) {
+    &_#{$position} {
+      #{$position}: $__base__margin;
+      @media screen and ($__bp__mobile) {
+        #{$position}: 0;
+      }
+    }
+  }
+}
 @keyframes clrAll {
   0% {
     background-color: transparent;
@@ -88,6 +111,17 @@ $__clr__text: rgb(255, 255, 255);
   100% {
     background-color: $__clr__bg;
     color: $__clr__text;
+  }
+}
+
+@keyframes clrAllDark {
+  0% {
+    background-color: transparent;
+    color: transparent;
+  }
+  100% {
+    background-color: $__clr__text;
+    color: $__clr__bg;
   }
 }
 

@@ -1,7 +1,5 @@
 "use strict";
 const initialParams = {
-    margin: "20px",
-    width: "300px",
     positionX: "center",
     positionY: "center",
     baseClassName: "stoic",
@@ -71,37 +69,39 @@ class Stoic {
         this.#setPosition();
     }
     #setPositionX() {
-        if (this.params.root?.style)
+        if (this.params.root?.classList) {
+            this.params.root?.classList.remove(`${this.params.baseClassName}_left`);
+            this.params.root?.classList.remove(`${this.params.baseClassName}_right`);
             switch (this.params.positionX) {
                 case "left":
-                    this.params.root.style.left = this.params.margin ?? "0";
+                    this.params.root?.classList.add(`${this.params.baseClassName}_left`);
                     break;
                 case "right":
-                    this.params.root.style.right = this.params.margin ?? "0";
+                    this.params.root?.classList.add(`${this.params.baseClassName}_right`);
                     break;
-                default:
-                    this.params.root.style.left = `calc(50% - ${parseInt(this.params.width ?? "0") / 2}px)`;
             }
+        }
     }
     #setPositionY() {
-        if (this.params.root)
+        if (this.params.root?.classList) {
+            this.params.root?.classList.remove(`${this.params.baseClassName}_top`);
+            this.params.root?.classList.remove(`${this.params.baseClassName}_bottom`);
             switch (this.params.positionY) {
                 case "top":
-                    this.params.root.style.top = this.params.margin ?? "0";
+                    this.params.root?.classList.add(`${this.params.baseClassName}_top`);
                     break;
                 case "bottom":
-                    this.params.root.style.bottom = this.params.margin ?? "0";
+                    this.params.root?.classList.add(`${this.params.baseClassName}_bottom`);
                     break;
-                default:
-                    this.params.root.style.top = "40%";
             }
+        }
     }
     #resetPositions() {
-        if (this.params.root) {
-            this.params.root.style.top = "initial";
-            this.params.root.style.bottom = "initial";
-            this.params.root.style.left = "initial";
-            this.params.root.style.right = "initial";
+        if (this.params.root?.classList) {
+            this.params.root?.classList.remove(`${this.params.baseClassName}_left`);
+            this.params.root?.classList.remove(`${this.params.baseClassName}_right`);
+            this.params.root?.classList.remove(`${this.params.baseClassName}_top`);
+            this.params.root?.classList.remove(`${this.params.baseClassName}_bottom`);
         }
     }
     nextQuote() {
@@ -116,7 +116,6 @@ class Stoic {
         this.params.root?.classList.add(`${this.params.baseClassName}_hide`);
     }
     show() {
-        console.log("show");
         this.params.root?.classList.remove(`${this.params.baseClassName}_hide`);
     }
 }

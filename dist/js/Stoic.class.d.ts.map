@@ -1,1 +1,1 @@
-{"version":3,"file":"Stoic.class.d.ts","sourceRoot":"","sources":["../../src/Stoic.class.ts"],"names":[],"mappings":"AAAA,QAAA,MAAM,aAAa,EAAE,MAMpB,CAAC;AAGF,cAAM,KAAK;;IAEG,OAAO,CAAC,MAAM;IAD1B,MAAM,CAAC,QAAQ,EAAE,KAAK,CAAC;gBACH,MAAM,GAAE,MAAsB;IAgHlD,SAAS;IAWT,IAAI;IAIJ,IAAI;CAIL"}
+{"version":3,"file":"Stoic.class.d.ts","sourceRoot":"","sources":["../../src/Stoic.class.ts"],"names":[],"mappings":"AAAA,QAAA,MAAM,aAAa,EAAE,MAIpB,CAAC;AAGF,cAAM,KAAK;;IAEG,OAAO,CAAC,MAAM;IAD1B,MAAM,CAAC,QAAQ,EAAE,KAAK,CAAC;gBACH,MAAM,GAAE,MAAsB;IAiHlD,SAAS;IAWT,IAAI;IAIJ,IAAI;CAGL"}

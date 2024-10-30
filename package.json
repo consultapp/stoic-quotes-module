@@ -4,9 +4,9 @@
   "description": "A web page module that displays Stoic quotes.",
   "main": "index.js",
   "scripts": {
-    "watch:css": "sass --watch src/:dist/css",
-    "dev": "tsc -b && sass src/:dist/css ",
-    "build": "tsc -b && sass src/:dist/css ",
+    "watch:css": "sass --watch src/:dist/css  --style compressed",
+    "dev": "tsc -b && sass src/:dist/css  --style compressed",
+    "build": "tsc -b && sass src/:dist/css  --style compressed",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "target": "es2017",
