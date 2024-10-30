@@ -3,7 +3,7 @@ $__clr__text: rgb(255, 255, 255);
 
 @media (prefers-color-scheme: dark) {
   $__clr__text: rgb(0, 0, 0);
-  $__clr__bg: rgb(255, 255, 255);
+  $__clr__bg: rgba(255, 255, 255, 0.75);
 }
 
 .stoic {
