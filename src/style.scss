@@ -1,4 +1,3 @@
-$__base__margin: 25px;
 $__clr__bg: rgb(0, 0, 0);
 $__clr__text: rgb(255, 255, 255);
 $__bp__mobile: "max-width: 475px";
@@ -6,6 +5,9 @@ $__bp__mobile: "max-width: 475px";
 @media (prefers-color-scheme: dark) {
   $__clr__text: rgb(0, 0, 0);
   $__clr__bg: rgba(255, 255, 255, 0.75);
+}
+:root {
+  --base-margin: 25px;
 }
 
 .stoic {
@@ -34,6 +36,7 @@ $__bp__mobile: "max-width: 475px";
     left: 0;
     right: 0;
     width: auto;
+    --base-margin: 0;
   }
 
   & * {
@@ -96,10 +99,7 @@ $__bp__mobile: "max-width: 475px";
 
   @each $position in (top, bottom, left, right) {
     &_#{$position} {
-      #{$position}: $__base__margin;
-      @media screen and ($__bp__mobile) {
-        #{$position}: 0;
-      }
+      #{$position}: var(--base-margin);
     }
   }
 }
