@@ -121,12 +121,10 @@ class Stoic {
         }, 400);
     }
     #waitForQuote() {
-        console.log("#waitForQuote this.quotes", this.quotes, this.loadingStatus);
         clearTimeout(this.waitTimeout);
         if (this.quotes.length)
             return this.#showQuote();
         this.waitTimeout = setTimeout(() => {
-            console.log("timeout fired", this.loadingStatus);
             switch (this.loadingStatus) {
                 case LOADING_STATUS.pending:
                     this.#waitForQuote();
@@ -168,7 +166,6 @@ class Stoic {
         this.params.root?.classList.add(`${this.params.baseClassName}_showText`);
     }
     #setContent(quote) {
-        console.log("setContent: quote", quote);
         if (quote) {
             if (this.quoteElement)
                 this.quoteElement.innerHTML = quote.text;
@@ -200,7 +197,6 @@ class Stoic {
             if (message && message?.type === MESSAGE_TYPES.quote) {
                 this.loadingStatus = LOADING_STATUS.loaded;
                 this.quotes.push(message);
-                console.log(" #loadRandomQuote", this.quotes);
                 return;
             }
         })
