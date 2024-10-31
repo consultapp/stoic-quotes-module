@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Stoic Quotes</title>
-    <link rel="stylesheet" href="dist/css/style.css" />
+    <link rel="stylesheet" href="dist/css/stoic.css" />
     <script src="dist/js/Stoic.class.js" defer></script>
   </head>
   <body>
@@ -17,7 +17,7 @@
         });
         const button1 = document.getElementById("open");
         button1.addEventListener("click", () => {
-          const stoic = new Stoic({ positionX: "left", positionY: "center" });
+          const stoic = new Stoic({ positionX: "left", positionY: "top" });
           stoic.show();
         });
       });

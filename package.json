@@ -9,7 +9,7 @@
     "build": "tsc -b && sass src/:dist/css  --style compressed",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "target": "es2017",
+  "target": "esNext",
   "author": "",
   "license": "ISC",
   "devDependencies": {
