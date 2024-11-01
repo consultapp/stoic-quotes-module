@@ -11,6 +11,7 @@ $__bp__mobile: "max-width: 475px";
 }
 
 .stoic {
+  margin: 0;
   position: fixed;
   left: calc(50% - min(50vw, 150px));
   top: 35%;
@@ -18,12 +19,11 @@ $__bp__mobile: "max-width: 475px";
   display: grid;
   gap: 15px;
 
-  max-width: 100vw;
   container-type: inline-size;
 
   font-family: Montserrat, sans-serif;
 
-  width: min(100vw, 300px);
+  width: min(100vw, 400px);
   padding: 25px;
 
   border-radius: 15px;
@@ -33,8 +33,8 @@ $__bp__mobile: "max-width: 475px";
   animation: clrAll 1.5s ease-out normal;
 
   @media screen and ($__bp__mobile) {
-    left: 0;
-    right: 0;
+    left: 0 !important;
+    right: 0 !important;
     width: auto;
     --base-margin: 0;
   }
