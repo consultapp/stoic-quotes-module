@@ -10,7 +10,7 @@
   <body>
     <script>
       window.addEventListener("load", () => {
-        const stoic = new Stoic();
+        const stoic = new Stoic({ positionX: "left", positionY: "bottom" });
         const button = document.getElementById("next");
         button.addEventListener("click", () => {
           stoic.nextQuote();

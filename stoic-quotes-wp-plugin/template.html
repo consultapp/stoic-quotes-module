@@ -1,0 +1,13 @@
+<script
+  defer
+  src="/wp-content/plugins/stoic-quotes-wp-plugin/dist/js/Stoic.class.js"
+></script>
+<script>
+  window.addEventListener("load", () => {
+    const stoic = new Stoic({ positionX: "left", positionY: "bottom" });
+    const root = document.querySelector(".stoic");
+    root.addEventListener("click", () => {
+      stoic.nextQuote();
+    });
+  });
+</script>
