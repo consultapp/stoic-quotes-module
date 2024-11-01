@@ -14,7 +14,7 @@ const initialParams = {
     positionX: "center",
     positionY: "center",
     baseClassName: "stoic",
-    delay: "30",
+    delay: "60",
     serverApi: "https://stoicquotes.ru/random",
 };
 const MINIMUM_QUOTES_POOL_LENGTH = 3;
@@ -71,15 +71,20 @@ class Stoic {
         clearInterval(this.interval);
         this.interval = 0;
     }
+    reset() {
+        this.stop();
+        this.play();
+    }
     #setInnerTemplate() {
         if (this.params.root) {
             this.params.root.innerHTML = `
             <backquote class="${this.params.baseClassName}__backquote">
             </backquote>
             <p class="${this.params.baseClassName}__author"></p>
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+            <svg id="close" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
-            </svg>`;
+            </svg>
+            <svg id="next" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>`;
             this.quoteElement = this.params.root.querySelector("backquote");
             this.authorElement = this.params.root.querySelector("p");
         }
@@ -92,9 +97,15 @@ class Stoic {
     }
     #initListeners() {
         this.params.root
-            ?.querySelector("svg")
+            ?.querySelector("[id='close']")
             ?.addEventListener("pointerup", () => {
             this.hide();
+        });
+        this.params.root
+            ?.querySelector("[id='next']")
+            ?.addEventListener("pointerup", () => {
+            this.reset();
+            this.nextQuote();
         });
     }
     #append() {

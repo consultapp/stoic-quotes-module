@@ -27,4 +27,5 @@ declare class Stoic {
     show(): void;
     play(): void;
     stop(): void;
+    reset(): void;
 }
