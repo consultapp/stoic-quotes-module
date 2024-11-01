@@ -13,12 +13,13 @@ https://stoicquotes.ru/
 
 ```
 interface Params {
-  root?: HTMLDivElement; //корневой элемент, если он есть на странице, иначе создастся новый
+  root?: HTMLDivElement;
   width?: string;
   positionX?: "left" | "right" | "center";
   positionY?: "top" | "bottom" | "center";
   margin?: string;
   baseClassName?: string;
+  delay?: string;
   serverApi: string;
 }
 
@@ -27,17 +28,20 @@ const initialParams: Params = {
   positionX: "center",
   positionY: "center",
   baseClassName: "stoic",
+  delay: "30",
   serverApi: "https://stoicquotes.ru/random",
 };
 
 ```
 
-### Методы класса
+### Методы класса 'Stoic'
 
 ```
-- nextQuote();
-- show();
-- hide();
+nextQuote();
+show();
+hide();
+play();
+stop();
 ```
 
 ### Пример подключения
@@ -47,8 +51,8 @@ const initialParams: Params = {
 <html lang="en">
   <head>
     ...
-    <link rel="stylesheet" href="dist/css/stoic.css" />
-    <script src="./dist/js/Stoic.class.js"></script>
+    <link rel="stylesheet" href="/dist/css/stoic.css" />
+    <script src="/dist/js/Stoic.class.js"></script>
   </head>
   <body>
     <script>

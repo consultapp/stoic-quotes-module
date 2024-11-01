@@ -1,7 +1,7 @@
 {
   "name": "stoic-quotes-module",
-  "version": "1.0.0",
-  "description": "A web page module that displays Stoic quotes.",
+  "version": "1.0.1",
+  "description": "A web page module that displays Stoic's quotes.",
   "main": "index.js",
   "scripts": {
     "watch:css": "sass --watch src/:dist/css  --style compressed",
@@ -10,10 +10,16 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "target": "esNext",
-  "author": "",
   "license": "ISC",
   "devDependencies": {
     "scss": "^0.2.4",
     "typescript": "^5.6.3"
+  },
+  "author": "Dmitry Egorov",
+  "email": "info@consultapp.ru",
+  "url": "https://consultapp.ru/",
+  "homepage": "https://stoicquotes.ru/",
+  "bugs": {
+    "email": "info@consultapp.ru"
   }
 }
