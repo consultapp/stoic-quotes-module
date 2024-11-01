@@ -11,11 +11,6 @@ declare const MESSAGE_TYPES: {
 };
 declare const initialParams: Params;
 declare const MINIMUM_QUOTES_POOL_LENGTH = 3;
-declare function isKey<T extends object>(x: T, k: PropertyKey): k is keyof T;
-declare function isValue<T extends object>(x: T, k: any): k is T[typeof k];
-type Entries<T> = {
-    [K in keyof T]: [K, T[K]];
-}[keyof T][];
 declare class Stoic {
     #private;
     private params;

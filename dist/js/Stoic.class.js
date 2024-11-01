@@ -18,12 +18,6 @@ const initialParams = {
     serverApi: "https://stoicquotes.ru/random",
 };
 const MINIMUM_QUOTES_POOL_LENGTH = 3;
-function isKey(x, k) {
-    return k in x;
-}
-function isValue(x, k) {
-    return k in x;
-}
 class Stoic {
     params;
     static instance;
@@ -113,10 +107,7 @@ class Stoic {
         this.#setPositionY();
     }
     #updateParams(params = initialParams) {
-        for (const [k, v] of Object.entries(params)) {
-            if (isKey(this.params, k))
-                this.params[k] = v;
-        }
+        this.params = { ...this.params, ...params };
         this.#setPosition();
     }
     #setPositionX() {

@@ -21,18 +21,6 @@ const initialParams: Params = {
 
 const MINIMUM_QUOTES_POOL_LENGTH = 3;
 
-function isKey<T extends object>(x: T, k: PropertyKey): k is keyof T {
-  return k in x;
-}
-
-function isValue<T extends object>(x: T, k: any): k is T[typeof k] {
-  return k in x;
-}
-
-type Entries<T> = {
-  [K in keyof T]: [K, T[K]];
-}[keyof T][];
-
 // Singletone Class
 class Stoic {
   static instance: Stoic;
@@ -137,9 +125,7 @@ class Stoic {
   }
 
   #updateParams(params: Params = initialParams) {
-    for (const [k, v] of Object.entries(params)) {
-      if (isKey(this.params, k)) this.params[k] = v;
-    }
+    this.params = { ...this.params, ...params };
     this.#setPosition();
   }
 
