@@ -97,9 +97,14 @@ $__bp__mobile: "max-width: 475px";
     transform: rotate(180deg);
   }
 
-  @each $position in (top, bottom, left, right) {
-    &_#{$position} {
-      #{$position}: var(--base-margin);
+  @each $p1, $p2 in (("top" "bottom"), ("left", "right")) {
+    &_#{$p1} {
+      #{$p1}: var(--base-margin);
+      #{$p2}: auto;
+    }
+    &_#{$p2} {
+      #{$p2}: var(--base-margin);
+      #{$p1}: auto;
     }
   }
 }
