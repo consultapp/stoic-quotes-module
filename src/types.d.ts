@@ -5,6 +5,7 @@ interface Params {
   positionY?: "top" | "bottom" | "center";
   margin?: string;
   baseClassName?: string;
+  delay?: string;
   serverApi: string;
 }
 
