@@ -11,10 +11,6 @@
     <script>
       window.addEventListener("load", () => {
         const stoic = new Stoic({ positionX: "left", positionY: "bottom" });
-        const button = document.getElementById("next");
-        button.addEventListener("click", () => {
-          stoic.nextQuote();
-        });
         const button1 = document.getElementById("open");
         button1.addEventListener("click", () => {
           const stoic = new Stoic({ positionX: "right", positionY: "top" });
@@ -22,7 +18,6 @@
         });
       });
     </script>
-    <button id="next">Next</button>
     <button id="open">Open</button>
   </body>
 </html>
