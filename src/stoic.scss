@@ -46,8 +46,10 @@ $__bp__mobile: "max-width: 475px";
   color: var(--clr-secondary);
   animation: clrAll 1.5s ease-out normal;
 
-  --clr-primary: rgb(0, 0, 0);
-  --clr-secondary: rgba(255, 255, 255, 0.9);
+  @media (prefers-color-scheme: dark) {
+    --clr-primary: rgb(0, 0, 0);
+    --clr-secondary: rgba(255, 255, 255, 0.9);
+  }
 
   @media (prefers-color-scheme: light) {
     --clr-secondary: rgb(0, 0, 0);
