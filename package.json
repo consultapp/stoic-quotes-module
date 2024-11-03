@@ -6,7 +6,7 @@
   "scripts": {
     "watch:css": "sass --watch src/:dist/css  --style compressed",
     "dev": "tsc -b && sass src/:dist/css  --style compressed",
-    "build": "tsc -b && sass src/:dist/css  --style compressed",
+    "build": "tsc -b && sass src/:dist/css  ",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "target": "esNext",

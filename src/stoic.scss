@@ -1,13 +1,8 @@
 $__bp__mobile: "max-width: 475px";
-$black: rgb(0, 0, 0);
-$white: rgba(255, 255, 255, 0.75);
-
-@media (prefers-color-scheme: dark) {
-  $__clr__text: rgb(0, 0, 0);
-  $__clr__bg: rgba(255, 255, 255, 0.75);
-}
 
 @mixin hover-button {
+  cursor: pointer;
+
   transition-property: transform, opacity;
   transition-duration: 0.3s;
   transition-timing-function: ease-in-out;
@@ -21,25 +16,18 @@ $white: rgba(255, 255, 255, 0.75);
 
 @mixin svg-button {
   position: absolute;
-  stroke: $__clr__text;
+  stroke: var(--clr-secondary);
   width: 25px;
   height: 25px;
   stroke-width: 2px;
-  animation: clrAll1 1.5s ease-out normal;
-}
-
-:root {
-  --base-margin: 25px;
-  --clr-primary: $black;
-  --clr-secondary: $white;
-
-  @media (prefers-color-scheme: dark) {
-    --clr-secondary: $black;
-    --clr-primary: $white;
-  }
+  animation: clrAll 1.5s ease-out normal;
 }
 
 .stoic {
+  --base-margin: 25px;
+  --clr-primary: rgb(0, 0, 0);
+  --clr-secondary: rgba(255, 255, 255, 0.9);
+
   margin: 0;
   position: fixed;
   left: calc(50% - min(50vw, 200px));
@@ -60,6 +48,12 @@ $white: rgba(255, 255, 255, 0.75);
   background-color: var(--clr-primary);
   color: var(--clr-secondary);
   animation: clrAll 1.5s ease-out normal;
+
+  @media (prefers-color-scheme: light) {
+    --clr-secondary: rgb(0, 0, 0);
+    --clr-primary: rgba(255, 255, 255, 0.75);
+    border: 1px solid black;
+  }
 
   @media screen and ($__bp__mobile) {
     left: 0 !important;
@@ -129,29 +123,11 @@ $white: rgba(255, 255, 255, 0.75);
   0% {
     background-color: transparent;
     color: transparent;
+    stroke: transparent;
   }
   100% {
     background-color: var(--clr-primary);
     color: var(--clr-secondary);
-  }
-}
-
-@keyframes clrAllDark {
-  0% {
-    background-color: transparent;
-    color: transparent;
-  }
-  100% {
-    background-color: var(--clr-secondary);
-    color: var(--clr-primary);
-  }
-}
-
-@keyframes clrAll1 {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
+    stroke: var(--clr-secondary);
   }
 }
