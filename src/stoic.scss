@@ -52,8 +52,9 @@ $__bp__mobile: "max-width: 475px";
   }
 
   @media (prefers-color-scheme: light) {
-    --clr-secondary: rgb(0, 0, 0);
     --clr-primary: rgba(255, 255, 255, 0.75);
+    --clr-secondary: rgb(0, 0, 0);
+
     border: 1px solid black;
   }
 
