@@ -2,6 +2,32 @@ $__bp__mobile: "max-width: 475px";
 $black: rgb(0, 0, 0);
 $white: rgba(255, 255, 255, 0.75);
 
+@media (prefers-color-scheme: dark) {
+  $__clr__text: rgb(0, 0, 0);
+  $__clr__bg: rgba(255, 255, 255, 0.75);
+}
+
+@mixin hover-button {
+  transition-property: transform, opacity;
+  transition-duration: 0.3s;
+  transition-timing-function: ease-in-out;
+
+  opacity: 0.9;
+  &:hover {
+    transform: scale(115%);
+    opacity: 1;
+  }
+}
+
+@mixin svg-button {
+  position: absolute;
+  stroke: $__clr__text;
+  width: 25px;
+  height: 25px;
+  stroke-width: 2px;
+  animation: clrAll1 1.5s ease-out normal;
+}
+
 :root {
   --base-margin: 25px;
   --clr-primary: $black;
@@ -14,30 +40,30 @@ $white: rgba(255, 255, 255, 0.75);
 }
 
 .stoic {
+  margin: 0;
   position: fixed;
-  left: calc(50% - min(50vw, 150px));
-  top: 35%;
+  left: calc(50% - min(50vw, 200px));
+  top: 35vh;
 
   display: grid;
-  gap: 15px;
+  gap: 1rem;
 
-  max-width: 100vw;
   container-type: inline-size;
 
   font-family: Montserrat, sans-serif;
 
-  width: min(100vw, 300px);
-  padding: 25px;
+  width: min(100vw, 400px);
+  padding: 2rem 2rem 1rem 2rem;
 
-  border-radius: 15px;
+  border-radius: 1rem;
 
   background-color: var(--clr-primary);
   color: var(--clr-secondary);
   animation: clrAll 1.5s ease-out normal;
 
   @media screen and ($__bp__mobile) {
-    left: 0;
-    right: 0;
+    left: 0 !important;
+    right: 0 !important;
     width: auto;
     --base-margin: 0;
   }
@@ -75,29 +101,17 @@ $white: rgba(255, 255, 255, 0.75);
     display: none;
   }
 
-  & svg {
-    position: absolute;
-    right: -20px;
-    top: -20px;
-    width: 25px;
-    height: 25px;
-    stroke-width: 5px;
-    stroke: var(--clr-primary);
-    animation: clrAll1 1.5s ease-out normal;
-
-    transition: transform 0.3s ease-in-out;
-    transform: rotate(0);
-
-    @media screen and ($__bp__mobile) {
-      top: 5px;
-      right: 5px;
-
-      stroke: var(--clr-secondary);
-    }
+  & svg#close {
+    @include hover-button();
+    @include svg-button();
+    top: 5px;
+    right: 5px;
   }
-  & svg:hover {
-    transition: transform 0.3s ease-in-out;
-    transform: rotate(180deg);
+  & svg#next {
+    @include hover-button();
+    @include svg-button();
+    top: 5px;
+    right: 30px;
   }
 
   @each $p1, $p2 in (("top" "bottom"), ("left", "right")) {
