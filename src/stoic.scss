@@ -25,9 +25,6 @@ $__bp__mobile: "max-width: 475px";
 
 .stoic {
   --base-margin: 25px;
-  --clr-primary: rgb(0, 0, 0);
-  --clr-secondary: rgba(255, 255, 255, 0.9);
-
   margin: 0;
   position: fixed;
   left: calc(50% - min(50vw, 200px));
@@ -48,6 +45,9 @@ $__bp__mobile: "max-width: 475px";
   background-color: var(--clr-primary);
   color: var(--clr-secondary);
   animation: clrAll 1.5s ease-out normal;
+
+  --clr-primary: rgb(0, 0, 0);
+  --clr-secondary: rgba(255, 255, 255, 0.9);
 
   @media (prefers-color-scheme: light) {
     --clr-secondary: rgb(0, 0, 0);
