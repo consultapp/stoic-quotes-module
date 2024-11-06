@@ -15,7 +15,8 @@ $__bp__mobile: "max-width: 475px";
 }
 
 @mixin svg-button {
-  position: absolute;
+  background-color: transparent;
+  fill: transparent;
   stroke: var(--clr-secondary);
   width: 25px;
   height: 25px;
@@ -54,8 +55,6 @@ $__bp__mobile: "max-width: 475px";
   @media (prefers-color-scheme: light) {
     --clr-primary: rgba(255, 255, 255, 0.75);
     --clr-secondary: rgb(0, 0, 0);
-
-    border: 1px solid black;
   }
 
   @media screen and ($__bp__mobile) {
@@ -85,6 +84,22 @@ $__bp__mobile: "max-width: 475px";
     text-align: right;
   }
 
+  &__controlls {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+
+    & svg {
+      @include hover-button();
+      @include svg-button();
+    }
+  }
+
   &_showText {
     color: var(--clr-secondary);
     transition: color 0.5s ease-in-out;
@@ -96,19 +111,6 @@ $__bp__mobile: "max-width: 475px";
 
   &_hide {
     display: none;
-  }
-
-  & svg#close {
-    @include hover-button();
-    @include svg-button();
-    top: 5px;
-    right: 5px;
-  }
-  & svg#next {
-    @include hover-button();
-    @include svg-button();
-    top: 5px;
-    right: 30px;
   }
 
   @each $p1, $p2 in (("top" "bottom"), ("left", "right")) {
@@ -127,10 +129,12 @@ $__bp__mobile: "max-width: 475px";
     background-color: transparent;
     color: transparent;
     stroke: transparent;
+    fill: transparent;
   }
   100% {
     background-color: var(--clr-primary);
     color: var(--clr-secondary);
     stroke: var(--clr-secondary);
+    fill: var(--clr-secondary);
   }
 }
