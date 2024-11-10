@@ -1,55 +1,53 @@
-"use strict";
-const LOADING_STATUS = {
+const $f2f7246cd229a3b3$var$LOADING_STATUS = {
     idle: "idle",
     pending: "pending",
     loaded: "loaded",
-    error: "error",
+    error: "error"
 };
-const MESSAGE_TYPES = {
+const $f2f7246cd229a3b3$var$MESSAGE_TYPES = {
     error: "error",
     quote: "quote",
-    status: "status",
+    status: "status"
 };
-const initialParams = {
+const $f2f7246cd229a3b3$var$initialParams = {
     positionX: "center",
     positionY: "center",
     baseClassName: "stoic",
     delay: "60",
-    serverApi: "https://stoicquotes.ru/random",
+    serverApi: "https://stoicquotes.ru/random"
 };
-const MINIMUM_QUOTES_POOL_LENGTH = 3;
-class Stoic {
-    params;
-    static instance;
-    quotes = [];
-    loadingStatus = LOADING_STATUS.idle;
-    waitTimeout = 0;
-    quoteElement = null;
-    authorElement = null;
-    interval = 0;
-    constructor(params = initialParams) {
+const $f2f7246cd229a3b3$var$MINIMUM_QUOTES_POOL_LENGTH = 5;
+// Singletone Class
+class $f2f7246cd229a3b3$var$Stoic {
+    constructor(params = $f2f7246cd229a3b3$var$initialParams){
         this.params = params;
-        if (Stoic.instance) {
-            Stoic.instance.#updateParams(params);
-            return Stoic.instance;
+        this.quotes = [];
+        this.loadingStatus = $f2f7246cd229a3b3$var$LOADING_STATUS.idle;
+        this.waitTimeout = 0;
+        this.quoteElement = null;
+        this.authorElement = null;
+        this.interval = 0;
+        if ($f2f7246cd229a3b3$var$Stoic.instance) {
+            $f2f7246cd229a3b3$var$Stoic.instance.#updateParams(params);
+            return $f2f7246cd229a3b3$var$Stoic.instance;
         }
-        this.params = { ...initialParams };
+        this.params = {
+            ...$f2f7246cd229a3b3$var$initialParams
+        };
         this.#updateParams(params);
-        Stoic.instance = this;
+        $f2f7246cd229a3b3$var$Stoic.instance = this;
         this.#waitForQuote();
         if (!params.root) {
             this.#getOuterTemplate();
             this.#setPosition();
             this.#append();
-        }
-        else
-            this.#setInnerTemplate();
+        } else this.#setInnerTemplate();
         this.#initListeners();
         this.play();
     }
     nextQuote() {
         this.#hideContent();
-        setTimeout(() => {
+        setTimeout(()=>{
             this.#fillQuotesPool();
             this.#waitForQuote();
         }, 400);
@@ -62,10 +60,9 @@ class Stoic {
     }
     play() {
         this.stop();
-        if (this.params.delay)
-            this.interval = setInterval(() => {
-                this.nextQuote();
-            }, parseInt(this.params.delay) * 1000);
+        if (this.params.delay) this.interval = setInterval(()=>{
+            this.nextQuote();
+        }, parseInt(this.params.delay) * 1000);
     }
     stop() {
         clearInterval(this.interval);
@@ -99,36 +96,34 @@ class Stoic {
         this.#setInnerTemplate();
     }
     #initListeners() {
-        this.params.root
-            ?.querySelector("[id='close']")
-            ?.addEventListener("pointerup", () => {
+        this.params.root?.querySelector("[id='close']")?.addEventListener("pointerup", ()=>{
             this.hide();
         });
-        this.params.root
-            ?.querySelector("[id='next']")
-            ?.addEventListener("pointerup", () => {
+        this.params.root?.querySelector("[id='next']")?.addEventListener("pointerup", ()=>{
             this.reset();
             this.nextQuote();
         });
     }
     #append() {
-        if (this.params.root instanceof Node)
-            document.body.append(this.params.root);
+        if (this.params.root instanceof Node) document.body.append(this.params.root);
     }
     #setPosition() {
         this.#resetPositions();
         this.#setPositionX();
         this.#setPositionY();
     }
-    #updateParams(params = initialParams) {
-        this.params = { ...this.params, ...params };
+    #updateParams(params = $f2f7246cd229a3b3$var$initialParams) {
+        this.params = {
+            ...this.params,
+            ...params
+        };
         this.#setPosition();
     }
     #setPositionX() {
         if (this.params.root?.classList) {
             this.params.root?.classList.remove(`${this.params.baseClassName}_left`);
             this.params.root?.classList.remove(`${this.params.baseClassName}_right`);
-            switch (this.params.positionX) {
+            switch(this.params.positionX){
                 case "left":
                     this.params.root?.classList.add(`${this.params.baseClassName}_left`);
                     break;
@@ -142,7 +137,7 @@ class Stoic {
         if (this.params.root?.classList) {
             this.params.root?.classList.remove(`${this.params.baseClassName}_top`);
             this.params.root?.classList.remove(`${this.params.baseClassName}_bottom`);
-            switch (this.params.positionY) {
+            switch(this.params.positionY){
                 case "top":
                     this.params.root?.classList.add(`${this.params.baseClassName}_top`);
                     break;
@@ -154,21 +149,20 @@ class Stoic {
     }
     #waitForQuote() {
         clearTimeout(this.waitTimeout);
-        if (this.quotes.length)
-            return this.#showQuote();
-        this.waitTimeout = setTimeout(() => {
-            switch (this.loadingStatus) {
-                case LOADING_STATUS.pending:
+        if (this.quotes.length) return this.#showQuote();
+        this.waitTimeout = setTimeout(()=>{
+            switch(this.loadingStatus){
+                case $f2f7246cd229a3b3$var$LOADING_STATUS.pending:
                     this.#waitForQuote();
                     break;
-                case LOADING_STATUS.idle:
+                case $f2f7246cd229a3b3$var$LOADING_STATUS.idle:
                     this.#fillQuotesPool();
                     this.#waitForQuote();
                     break;
-                case LOADING_STATUS.error:
+                case $f2f7246cd229a3b3$var$LOADING_STATUS.error:
                     this.#showError();
                     break;
-                case LOADING_STATUS.loaded:
+                case $f2f7246cd229a3b3$var$LOADING_STATUS.loaded:
                     this.#showQuote();
                     break;
                 default:
@@ -182,7 +176,7 @@ class Stoic {
             this.#showContent();
         }
     }
-    #showError() { }
+    #showError() {}
     #hideContent() {
         this.params.root?.classList.remove(`${this.params.baseClassName}_showText`);
         this.params.root?.classList.add(`${this.params.baseClassName}_hideText`);
@@ -193,10 +187,8 @@ class Stoic {
     }
     #setContent(quote) {
         if (quote) {
-            if (this.quoteElement)
-                this.quoteElement.innerHTML = quote.text;
-            if (this.authorElement)
-                this.authorElement.innerHTML = quote.author;
+            if (this.quoteElement) this.quoteElement.innerHTML = quote.text;
+            if (this.authorElement) this.authorElement.innerHTML = quote.author;
         }
     }
     #resetPositions() {
@@ -208,27 +200,29 @@ class Stoic {
         }
     }
     #fillQuotesPool() {
-        for (let i = this.quotes.length; i < MINIMUM_QUOTES_POOL_LENGTH; i++)
-            this.#loadRandomQuote();
+        for(let i = this.quotes.length; i < $f2f7246cd229a3b3$var$MINIMUM_QUOTES_POOL_LENGTH; i++)this.#loadRandomQuote();
     }
     #loadRandomQuote() {
-        this.loadingStatus = LOADING_STATUS.pending;
-        fetch(this.params.serverApi)
-            .then((data) => data.json())
-            .then((message) => {
-            if (!message || message?.type === MESSAGE_TYPES.error) {
-                this.loadingStatus = LOADING_STATUS.error;
+        this.loadingStatus = $f2f7246cd229a3b3$var$LOADING_STATUS.pending;
+        fetch(this.params.serverApi).then((data)=>data.json()).then((message)=>{
+            if (!message || message?.type === $f2f7246cd229a3b3$var$MESSAGE_TYPES.error) {
+                this.loadingStatus = $f2f7246cd229a3b3$var$LOADING_STATUS.error;
                 return;
             }
-            if (message && message?.type === MESSAGE_TYPES.quote) {
-                this.loadingStatus = LOADING_STATUS.loaded;
+            if (message && message?.type === $f2f7246cd229a3b3$var$MESSAGE_TYPES.quote) {
+                this.loadingStatus = $f2f7246cd229a3b3$var$LOADING_STATUS.loaded;
                 this.quotes.push(message);
                 return;
             }
-        })
-            .catch(() => {
-            this.loadingStatus = LOADING_STATUS.error;
+        }).catch(()=>{
+            this.loadingStatus = $f2f7246cd229a3b3$var$LOADING_STATUS.error;
         });
     }
 }
-//# sourceMappingURL=Stoic.class.js.map
+var $f2f7246cd229a3b3$export$2e2bcd8739ae039 = $f2f7246cd229a3b3$var$Stoic;
+
+
+
+
+export {$f2f7246cd229a3b3$export$2e2bcd8739ae039 as Stoic};
+//# sourceMappingURL=stoic.js.map

@@ -2,16 +2,20 @@
   "name": "stoic-quotes-module",
   "version": "1.0.1",
   "description": "A web page module that displays Stoic's quotes.",
-  "main": "index.js",
+  "type": "module",
+  "source": "src/index.js",
+  "module": "dist/js/stoic.js",
   "scripts": {
     "watch:css": "sass --watch src/:dist/css  --style compressed",
-    "build": "tsc -b && sass src/:dist/css  --style compressed",
-    "dev": "tsc -b && sass src/:dist/css  ",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "watch": "parcel watch && sass --watch src/:dist/css  --style compressed",
+    "build": "parcel build --no-cache  && sass  src/:dist/css  --style compressed"
   },
   "target": "esNext",
   "license": "ISC",
   "devDependencies": {
+    "@parcel/transformer-sass": "^2.12.0",
+    "@parcel/transformer-typescript-types": "^2.12.0",
+    "parcel": "^2.12.0",
     "scss": "^0.2.4",
     "typescript": "^5.6.3"
   },

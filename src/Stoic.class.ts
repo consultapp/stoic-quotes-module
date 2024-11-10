@@ -19,7 +19,7 @@ const initialParams: Params = {
   serverApi: "https://stoicquotes.ru/random",
 };
 
-const MINIMUM_QUOTES_POOL_LENGTH = 3;
+const MINIMUM_QUOTES_POOL_LENGTH = 5;
 
 // Singletone Class
 class Stoic {
@@ -264,3 +264,5 @@ class Stoic {
       });
   }
 }
+
+export default Stoic;
