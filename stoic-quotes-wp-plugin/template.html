@@ -1,8 +1,10 @@
 <script
   defer
-  src="/wp-content/plugins/stoic-quotes-wp-plugin/dist/js/Stoic.class.js"
+  src="/wp-content/plugins/stoic-quotes-wp-plugin/dist/js/stoic.js"
 ></script>
-<script>
+<script type="module" defer>
+  import { Stoic } from "/dist/stoic.mjs";
+
   window.addEventListener("load", () => {
     new Stoic({ positionX: "left", positionY: "bottom" });
   });
