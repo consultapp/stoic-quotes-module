@@ -26,10 +26,10 @@ class Stoic {
   static instance: Stoic;
   private quotes: Quote[] = [];
   private loadingStatus: LOADING_STATUS = LOADING_STATUS.idle;
-  private waitTimeout = 0;
+  private waitTimeout: number | ReturnType<typeof setTimeout> = 0;
   private quoteElement: HTMLElement | null = null;
   private authorElement: HTMLElement | null = null;
-  private interval: number = 0;
+  private interval: number | ReturnType<typeof setInterval> = 0;
 
   constructor(private params: Params = initialParams) {
     if (Stoic.instance) {

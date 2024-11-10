@@ -6,7 +6,12 @@ import { deleteAsync } from "del";
 import syncServer from "browser-sync";
 const sync = syncServer.create();
 
+import ts from "gulp-typescript";
+
 import flatten from "gulp-flatten";
+import gulp_minify from "gulp-minify";
+
+import minify_js from "gulp-minifier";
 
 // // STYLE
 
@@ -38,6 +43,24 @@ function scss() {
     .pipe(dest("./dist/css")); // сохраняем конечный фалй
 }
 
+function js() {
+  var tsProject = ts.createProject("tsconfig.json");
+  return (
+    src("src/**/**.ts") // выбираем файлы по маске
+      .pipe(tsProject())
+      .pipe(concat(`${PACK_NAME}.js`)) // сиединяем в один файл script.js
+      // .pipe(
+      //   minify_js({
+      //     minify: true,
+      //     // minifyJS: {
+      //     //   sourceMap: true,
+      //     // },
+      //   })
+      // )
+      .pipe(dest("./dist/js"))
+  );
+}
+
 function clear() {
   return deleteAsync("dist"); // удаляем все файлы из итогового проекта
 }
@@ -53,7 +76,7 @@ function serve() {
   // watch("src/**/**.js", series(js)).on("change", sync.reload);
 }
 
-const build = series([clear, scss]);
+const build = series([clear, scss, js]);
 const dev = series([clear, scss, serve]);
 // const build = series([clear, scss, html, js, images]);
 // const dev = series([clear, scss, html, js, images, serve]);
