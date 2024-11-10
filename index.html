@@ -5,12 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Stoic Quotes</title>
     <link rel="stylesheet" href="dist/css/stoic.css" />
-    <!-- <script src="dist/stoic.mjs" defer type="module"></script> -->
   </head>
   <body>
     <script defer type="module">
-      import { Stoic } from "/dist/stoic.mjs";
-      console.dir(Stoic);
+      import { Stoic } from "/dist/js/stoic.js";
 
       window.addEventListener("load", () => {
         const stoic = new Stoic({ positionX: "left", positionY: "bottom" });

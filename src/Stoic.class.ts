@@ -32,6 +32,7 @@ class Stoic {
   private interval: number = 0;
 
   constructor(private params: Params = initialParams) {
+    // super();
     if (Stoic.instance) {
       Stoic.instance.#updateParams(params);
       return Stoic.instance;

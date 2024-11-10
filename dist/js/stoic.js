@@ -27,6 +27,7 @@ class $f2f7246cd229a3b3$var$Stoic {
         this.quoteElement = null;
         this.authorElement = null;
         this.interval = 0;
+        // super();
         if ($f2f7246cd229a3b3$var$Stoic.instance) {
             $f2f7246cd229a3b3$var$Stoic.instance.#updateParams(params);
             return $f2f7246cd229a3b3$var$Stoic.instance;
