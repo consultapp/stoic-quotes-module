@@ -1,14 +1,17 @@
-const $f2f7246cd229a3b3$var$LOADING_STATUS = {
+const $4ad1b6ff64944aee$export$ba4f16b6d93085b4 = {
     idle: "idle",
     pending: "pending",
     loaded: "loaded",
     error: "error"
 };
-const $f2f7246cd229a3b3$var$MESSAGE_TYPES = {
+const $4ad1b6ff64944aee$export$e5fcfdba4a8ae715 = {
     error: "error",
     quote: "quote",
     status: "status"
 };
+const $4ad1b6ff64944aee$export$274544c296ce8782 = 5;
+
+
 const $f2f7246cd229a3b3$var$initialParams = {
     positionX: "center",
     positionY: "center",
@@ -16,18 +19,16 @@ const $f2f7246cd229a3b3$var$initialParams = {
     delay: "60",
     serverApi: "https://stoicquotes.ru/random"
 };
-const $f2f7246cd229a3b3$var$MINIMUM_QUOTES_POOL_LENGTH = 5;
 // Singletone Class
 class $f2f7246cd229a3b3$var$Stoic {
     constructor(params = $f2f7246cd229a3b3$var$initialParams){
         this.params = params;
         this.quotes = [];
-        this.loadingStatus = $f2f7246cd229a3b3$var$LOADING_STATUS.idle;
+        this.loadingStatus = (0, $4ad1b6ff64944aee$export$ba4f16b6d93085b4).idle;
         this.waitTimeout = 0;
         this.quoteElement = null;
         this.authorElement = null;
         this.interval = 0;
-        // super();
         if ($f2f7246cd229a3b3$var$Stoic.instance) {
             $f2f7246cd229a3b3$var$Stoic.instance.#updateParams(params);
             return $f2f7246cd229a3b3$var$Stoic.instance;
@@ -76,9 +77,11 @@ class $f2f7246cd229a3b3$var$Stoic {
     #setInnerTemplate() {
         if (this.params.root) {
             this.params.root.innerHTML = `
-            <backquote class="${this.params.baseClassName}__backquote">
-            </backquote>
-            <p class="${this.params.baseClassName}__author"></p>
+            <div class="${this.params.baseClassName}__content">
+              <backquote class="${this.params.baseClassName}__backquote"></backquote>
+              <p class="${this.params.baseClassName}__author"></p>
+            </div>
+            <svg class="${this.params.baseClassName}__spinner" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-loader-circle"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg>
             <div class="${this.params.baseClassName}__controlls">
               <svg id="next" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="transparent"  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" >
                 <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
@@ -151,19 +154,20 @@ class $f2f7246cd229a3b3$var$Stoic {
     #waitForQuote() {
         clearTimeout(this.waitTimeout);
         if (this.quotes.length) return this.#showQuote();
+        this.#showLoading();
         this.waitTimeout = setTimeout(()=>{
             switch(this.loadingStatus){
-                case $f2f7246cd229a3b3$var$LOADING_STATUS.pending:
+                case (0, $4ad1b6ff64944aee$export$ba4f16b6d93085b4).pending:
                     this.#waitForQuote();
                     break;
-                case $f2f7246cd229a3b3$var$LOADING_STATUS.idle:
+                case (0, $4ad1b6ff64944aee$export$ba4f16b6d93085b4).idle:
                     this.#fillQuotesPool();
                     this.#waitForQuote();
                     break;
-                case $f2f7246cd229a3b3$var$LOADING_STATUS.error:
+                case (0, $4ad1b6ff64944aee$export$ba4f16b6d93085b4).error:
                     this.#showError();
                     break;
-                case $f2f7246cd229a3b3$var$LOADING_STATUS.loaded:
+                case (0, $4ad1b6ff64944aee$export$ba4f16b6d93085b4).loaded:
                     this.#showQuote();
                     break;
                 default:
@@ -175,16 +179,23 @@ class $f2f7246cd229a3b3$var$Stoic {
         if (this.quotes.length) {
             this.#setContent(this.quotes.shift());
             this.#showContent();
+            this.#hideLoading();
         }
     }
     #showError() {}
     #hideContent() {
-        this.params.root?.classList.remove(`${this.params.baseClassName}_showText`);
-        this.params.root?.classList.add(`${this.params.baseClassName}_hideText`);
+        this.params.root?.classList.remove(`${this.params.baseClassName}_showContent`);
+        this.params.root?.classList.add(`${this.params.baseClassName}_hideContent`);
     }
     #showContent() {
-        this.params.root?.classList.remove(`${this.params.baseClassName}_hideText`);
-        this.params.root?.classList.add(`${this.params.baseClassName}_showText`);
+        this.params.root?.classList.remove(`${this.params.baseClassName}_hideContent`);
+        this.params.root?.classList.add(`${this.params.baseClassName}_showContent`);
+    }
+    #showLoading() {
+        this.params.root?.classList.add(`${this.params.baseClassName}_loading`);
+    }
+    #hideLoading() {
+        this.params.root?.classList.remove(`${this.params.baseClassName}_loading`);
     }
     #setContent(quote) {
         if (quote) {
@@ -193,30 +204,31 @@ class $f2f7246cd229a3b3$var$Stoic {
         }
     }
     #resetPositions() {
-        if (this.params.root?.classList) {
-            this.params.root?.classList.remove(`${this.params.baseClassName}_left`);
-            this.params.root?.classList.remove(`${this.params.baseClassName}_right`);
-            this.params.root?.classList.remove(`${this.params.baseClassName}_top`);
-            this.params.root?.classList.remove(`${this.params.baseClassName}_bottom`);
-        }
+        const positions = [
+            "_left",
+            "_right",
+            "_top",
+            "_bottom"
+        ];
+        if (this.params.root?.classList) positions.forEach((p)=>this.params.root?.classList.remove(`${this.params.baseClassName}${p}`));
     }
     #fillQuotesPool() {
-        for(let i = this.quotes.length; i < $f2f7246cd229a3b3$var$MINIMUM_QUOTES_POOL_LENGTH; i++)this.#loadRandomQuote();
+        for(let i = this.quotes.length; i < (0, $4ad1b6ff64944aee$export$274544c296ce8782); i++)this.#loadRandomQuote();
     }
     #loadRandomQuote() {
-        this.loadingStatus = $f2f7246cd229a3b3$var$LOADING_STATUS.pending;
+        this.loadingStatus = (0, $4ad1b6ff64944aee$export$ba4f16b6d93085b4).pending;
         fetch(this.params.serverApi).then((data)=>data.json()).then((message)=>{
-            if (!message || message?.type === $f2f7246cd229a3b3$var$MESSAGE_TYPES.error) {
-                this.loadingStatus = $f2f7246cd229a3b3$var$LOADING_STATUS.error;
+            if (!message || message?.type === (0, $4ad1b6ff64944aee$export$e5fcfdba4a8ae715).error) {
+                this.loadingStatus = (0, $4ad1b6ff64944aee$export$ba4f16b6d93085b4).error;
                 return;
             }
-            if (message && message?.type === $f2f7246cd229a3b3$var$MESSAGE_TYPES.quote) {
-                this.loadingStatus = $f2f7246cd229a3b3$var$LOADING_STATUS.loaded;
+            if (message && message?.type === (0, $4ad1b6ff64944aee$export$e5fcfdba4a8ae715).quote) {
+                this.loadingStatus = (0, $4ad1b6ff64944aee$export$ba4f16b6d93085b4).loaded;
                 this.quotes.push(message);
                 return;
             }
         }).catch(()=>{
-            this.loadingStatus = $f2f7246cd229a3b3$var$LOADING_STATUS.error;
+            this.loadingStatus = (0, $4ad1b6ff64944aee$export$ba4f16b6d93085b4).error;
         });
     }
 }

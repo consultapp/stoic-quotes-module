@@ -31,7 +31,8 @@ $__bp__mobile: "max-width: 475px";
   top: 35vh;
 
   display: grid;
-  gap: 1rem;
+  justify-content: center;
+  align-items: center;
 
   container-type: inline-size;
 
@@ -44,7 +45,6 @@ $__bp__mobile: "max-width: 475px";
 
   background-color: var(--clr-primary);
   color: var(--clr-secondary);
-  animation: clrAll 1.5s ease-out normal;
 
   @media (prefers-color-scheme: dark) {
     --clr-primary: rgb(0, 0, 0);
@@ -93,6 +93,7 @@ $__bp__mobile: "max-width: 475px";
     flex-direction: row;
     justify-content: flex-end;
     align-items: center;
+    padding-inline: 1rem;
 
     & svg {
       @include hover-button();
@@ -100,16 +101,38 @@ $__bp__mobile: "max-width: 475px";
     }
   }
 
-  &_showText backquote,
-  &_showText p {
+  &__content {
+    display: grid;
+    gap: 1rem;
+  }
+
+  &_loading &__content {
+    display: none;
+  }
+
+  &_showContent &__content {
     color: var(--clr-secondary);
     transition: color 0.5s ease-in-out;
   }
 
-  &_hideText backquote,
-  &_hideText p {
+  &_hideContent &__content {
     color: transparent;
     transition: color 0.5s ease-in-out;
+  }
+
+  &__spinner {
+    display: none;
+    justify-content: center;
+    align-items: center;
+
+    width: 35px;
+    height: 35px;
+
+    animation: 1.5s linear 0s infinite normal fullRotation;
+  }
+
+  &_loading &__spinner {
+    display: grid;
   }
 
   &_hide {
@@ -127,13 +150,12 @@ $__bp__mobile: "max-width: 475px";
     }
   }
 }
-@keyframes clrAll {
+
+@keyframes fullRotation {
   0% {
-    background-color: transparent;
-    color: transparent;
+    transform: rotate(0deg);
   }
   100% {
-    background-color: var(--clr-primary);
-    color: var(--clr-secondary);
+    transform: rotate(360deg);
   }
 }
