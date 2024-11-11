@@ -46,6 +46,7 @@ class $f2f7246cd229a3b3$var$Stoic {
         } else this.#setInnerTemplate();
         this.#initListeners();
         this.play();
+        this.#showLoading();
     }
     nextQuote() {
         this.#hideContent();
@@ -81,7 +82,15 @@ class $f2f7246cd229a3b3$var$Stoic {
               <backquote class="${this.params.baseClassName}__backquote"></backquote>
               <p class="${this.params.baseClassName}__author"></p>
             </div>
-            <svg class="${this.params.baseClassName}__spinner" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-loader-circle"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg>
+            <div class="${this.params.baseClassName}__loader skeleton">
+              <div class="skeleton__group">
+                <div class="skeleton__bar skeleton__bar_full"></div>
+                <div class="skeleton__bar skeleton__bar_full"></div>
+                <div class="skeleton__bar skeleton__bar_big"></div>
+              </div>
+              <div class="skeleton__bar skeleton__bar_small"></div>
+            </div>
+            
             <div class="${this.params.baseClassName}__controlls">
               <svg id="next" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="transparent"  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" >
                 <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
