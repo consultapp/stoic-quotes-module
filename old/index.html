@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Stoic Quotes</title>
+    <link rel="stylesheet" href="dist/css/stoic.css" />
+    <script src="dist/js/Stoic.class.js" defer></script>
+  </head>
+  <body>
+    <script>
+      window.addEventListener("load", () => {
+        const stoic = new Stoic({ positionX: "left", positionY: "bottom" });
+        const button1 = document.getElementById("open");
+        button1.addEventListener("click", () => {
+          const stoic = new Stoic({ positionX: "right", positionY: "top" });
+          stoic.show();
+        });
+      });
+    </script>
+    <button id="open">Open</button>
+  </body>
+</html>
