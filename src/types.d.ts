@@ -1,4 +1,6 @@
-interface Params {
+import { LOADING_STATUS, MESSAGE_TYPES } from "./fixtures";
+
+export interface Params {
   root?: HTMLDivElement;
   width?: string;
   positionX?: "left" | "right" | "center";
@@ -9,19 +11,19 @@ interface Params {
   serverApi: string;
 }
 
-type LOADING_STATUS = keyof typeof LOADING_STATUS;
+export type LOADING_STATUS = keyof typeof LOADING_STATUS;
 
-type MESSAGE_TYPES = keyof typeof MESSAGE_TYPES;
+export type MESSAGE_TYPES = keyof typeof MESSAGE_TYPES;
 
-interface Quote {
+export interface Quote {
   text: string;
   author: string;
-  type: MESSAGE_TYPES.quote;
+  type: typeof MESSAGE_TYPES.quote;
 }
 
-interface QuoteError {
+export interface QuoteError {
   text: string;
-  type: MESSAGE_TYPES.error;
+  type: typeof MESSAGE_TYPES.error;
 }
 
-type ApiMessage = Quote | QuoteError;
+export type ApiMessage = Quote | QuoteError;
