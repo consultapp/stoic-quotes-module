@@ -11,19 +11,19 @@ export interface Params {
   serverApi: string;
 }
 
-export type LOADING_STATUS = keyof typeof LOADING_STATUS;
+export type TLOADING_STATUS = keyof typeof LOADING_STATUS;
 
-export type MESSAGE_TYPES = keyof typeof MESSAGE_TYPES;
+export type TMESSAGE_TYPES = keyof typeof MESSAGE_TYPES;
 
 export interface Quote {
   text: string;
   author: string;
-  type: typeof MESSAGE_TYPES.quote;
+  type: TMESSAGE_TYPES["quote"];
 }
 
 export interface QuoteError {
   text: string;
-  type: typeof MESSAGE_TYPES.error;
+  type: TMESSAGE_TYPES["error"];
 }
 
 export type ApiMessage = Quote | QuoteError;

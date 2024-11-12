@@ -1,9 +1,13 @@
-import { ThemeProvider } from "./components/theme/themeProvider";
+import StoicContainer from "./containers/StoicContainer/StoicContainer";
+import QuoteContextProvider from "./context/quote/provider";
+import { ThemeProvider } from "./context/theme/themeProvider";
 
 function App() {
   return (
     <ThemeProvider defaultTheme="dark" storageKey="stoic-ui-theme">
-      <>QQQ</>
+      <QuoteContextProvider>
+        <StoicContainer />
+      </QuoteContextProvider>
     </ThemeProvider>
   );
 }

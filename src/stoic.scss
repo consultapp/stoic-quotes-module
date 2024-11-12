@@ -1,0 +1,140 @@
+$__bp__mobile: "max-width: 475px";
+
+@mixin hover-button {
+  cursor: pointer;
+
+  transition-property: transform, opacity;
+  transition-duration: 0.3s;
+  transition-timing-function: ease-in-out;
+
+  opacity: 0.9;
+  &:hover {
+    transform: scale(115%);
+    opacity: 1;
+  }
+}
+
+@mixin svg-button {
+  background-color: transparent;
+  fill: transparent;
+  stroke: var(--clr-secondary);
+  width: 1rem;
+  height: 1rem;
+  stroke-width: 2px;
+  animation: clrAll 1.5s ease-out normal;
+}
+
+.stoic {
+  --base-margin: 25px;
+  margin: 0;
+  position: fixed;
+  left: calc(50% - min(50vw, 200px));
+  top: 35vh;
+
+  display: grid;
+  gap: 1rem;
+
+  container-type: inline-size;
+
+  font-family: Montserrat, sans-serif;
+
+  width: min(100vw, 400px);
+  padding: 2rem 2rem 1rem 2rem;
+
+  border-radius: 1rem;
+
+  background-color: var(--clr-primary);
+  color: var(--clr-secondary);
+  animation: clrAll 1.5s ease-out normal;
+
+  @media (prefers-color-scheme: dark) {
+    --clr-primary: rgb(0, 0, 0);
+    --clr-secondary: rgba(255, 255, 255, 0.9);
+  }
+
+  @media (prefers-color-scheme: light) {
+    --clr-primary: rgba(255, 255, 255, 0.75);
+    --clr-secondary: rgb(0, 0, 0);
+  }
+
+  @media screen and ($__bp__mobile) {
+    left: 0 !important;
+    right: 0 !important;
+    width: auto;
+    --base-margin: 0;
+  }
+
+  & * {
+    padding: 0;
+    margin: 0;
+  }
+
+  &__backquote {
+    font-size: 1.1rem;
+    line-height: 1.5rem;
+
+    word-break: auto;
+    text-align: justify;
+    text-align-last: center;
+    letter-spacing: 0.1rem;
+  }
+  &__author {
+    font-size: 1rem;
+    letter-spacing: 0.15rem;
+    text-align: right;
+  }
+
+  &__controlls {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+
+    & svg {
+      @include hover-button();
+      @include svg-button();
+    }
+  }
+
+  &_showText {
+    color: var(--clr-secondary);
+    transition: color 0.5s ease-in-out;
+  }
+  &_hideText {
+    color: transparent;
+    transition: color 0.5s ease-in-out;
+  }
+
+  &_hide {
+    display: none;
+  }
+
+  @each $p1, $p2 in (("top" "bottom"), ("left", "right")) {
+    &_#{$p1} {
+      #{$p1}: var(--base-margin);
+      #{$p2}: auto;
+    }
+    &_#{$p2} {
+      #{$p2}: var(--base-margin);
+      #{$p1}: auto;
+    }
+  }
+}
+@keyframes clrAll {
+  0% {
+    background-color: transparent;
+    color: transparent;
+    stroke: transparent;
+    fill: transparent;
+  }
+  100% {
+    background-color: var(--clr-primary);
+    color: var(--clr-secondary);
+    stroke: var(--clr-secondary);
+    fill: var(--clr-secondary);
+  }
+}

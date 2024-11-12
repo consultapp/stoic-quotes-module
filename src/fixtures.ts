@@ -1,3 +1,5 @@
+import { Params } from "./types";
+
 export const LOADING_STATUS = {
   idle: "idle",
   pending: "pending",
@@ -16,3 +18,13 @@ export const Theme = {
   light: "light",
   system: "system",
 } as const;
+
+export const MINIMUM_QUOTES_POOL_LENGTH = 5;
+
+export const initialParams: Params = {
+  positionX: "center",
+  positionY: "center",
+  baseClassName: "stoic",
+  delay: "60",
+  serverApi: "https://stoicquotes.ru/random",
+};
