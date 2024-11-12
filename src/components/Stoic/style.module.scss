@@ -1,0 +1,18 @@
+.root {
+  padding: 0;
+
+  &__blockquote {
+    font-size: 1.1rem;
+    line-height: 1.5rem;
+
+    word-break: auto;
+    text-align: justify;
+    text-align-last: center;
+    letter-spacing: 0.1rem;
+  }
+  &__author {
+    font-size: 1rem;
+    letter-spacing: 0.15rem;
+    text-align: right;
+  }
+}
