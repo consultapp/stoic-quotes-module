@@ -7,17 +7,15 @@ type Props = { quote: Quote };
 
 export default function Stoic({ quote }: Props) {
   const [state, setState] = useState<Quote | null>(null);
-  const card = useRef<HTMLDivElement>();
+  const card = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    console.log("second");
-
-    if (state) {
-      card.current?.classList.add(styles.hide);
-      card.current?.classList.remove(styles.show);
+    if (state && card) {
+      card?.current?.classList?.add(styles.hide);
+      card?.current?.classList?.remove(styles.show);
 
       setTimeout(() => {
-        card.current?.classList.remove(styles.hide);
+        card?.current?.classList?.remove(styles.hide);
         setState(quote);
       }, 1000);
     }
@@ -26,7 +24,7 @@ export default function Stoic({ quote }: Props) {
 
   useEffect(() => {
     setState(quote);
-    card.current?.classList.add(styles.show);
+    card.current?.classList?.add(styles.show);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

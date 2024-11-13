@@ -23,6 +23,11 @@ export default function StoicControlls({ next }: Props) {
     clearInterval(timer.current);
   }, [timer]);
 
+  const resetTimer = useCallback(() => {
+    stopTimer();
+    startTimer();
+  }, [stopTimer, startTimer]);
+
   useEffect(() => {
     if (play) startTimer();
     else stopTimer();
@@ -40,7 +45,14 @@ export default function StoicControlls({ next }: Props) {
           <Play />
         </Button>
       )}
-      <Button variant="ghost" size="icon" onClick={next}>
+      <Button
+        variant="ghost"
+        size="icon"
+        onClick={() => {
+          resetTimer();
+          next();
+        }}
+      >
         <ArrowRight />
       </Button>
     </div>

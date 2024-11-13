@@ -22,18 +22,20 @@ export default function StoicContainer() {
 
   return (
     <StoicWrapper>
-      {isEmpty ? (
-        <Loader />
-      ) : (
-        <>
-          <StoicControlls
-            next={() => {
-              setCurrent((prev) => prev + 1);
-            }}
-          />
-          <Stoic quote={quotes[current]} />
-        </>
-      )}
+      <>
+        {isEmpty ? (
+          <Loader />
+        ) : (
+          <>
+            <StoicControlls
+              next={() => {
+                setCurrent((prev) => prev + 1);
+              }}
+            />
+            <Stoic quote={quotes[current]} />
+          </>
+        )}
+      </>
     </StoicWrapper>
   );
 }
