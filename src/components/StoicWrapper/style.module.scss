@@ -10,12 +10,12 @@ $__bp__mobile: "max-width: 475px";
   display: grid;
   gap: 1rem;
 
-  container-type: inline-size;
+  opacity: 0;
 
+  container-type: inline-size;
   font-family: Montserrat, sans-serif;
 
   width: min(100vw, 400px);
-
   padding: 2rem 2rem 1rem 2rem !important;
 
   @media screen and ($__bp__mobile) {
@@ -24,4 +24,18 @@ $__bp__mobile: "max-width: 475px";
     width: auto;
     --base-margin: 0;
   }
+
+  transition: opacity 2s ease-in-out;
+}
+
+.show {
+  opacity: 1;
+}
+
+.hide {
+  opacity: 0;
+}
+
+.hidden {
+  display: none;
 }
