@@ -4,7 +4,7 @@ import Stoic from "@/components/Stoic/Stoic";
 import StoicWrapper from "@/components/StoicWrapper/StoicWrapper";
 import { fillQuotesPool } from "@/functions/loadQuotes";
 import StoicControlls from "@/components/StoicControlls/StoicControlls";
-import { X } from "lucide-react";
+import Loader from "@/components/Loader/Loader";
 
 let render = 0;
 export default function StoicContainer() {
@@ -23,11 +23,15 @@ export default function StoicContainer() {
   return (
     <StoicWrapper>
       {isEmpty ? (
-        <div>Loading</div>
+        <Loader />
       ) : (
         <>
+          <StoicControlls
+            next={() => {
+              setCurrent((prev) => prev + 1);
+            }}
+          />
           <Stoic quote={quotes[current]} />
-          <StoicControlls />
         </>
       )}
     </StoicWrapper>

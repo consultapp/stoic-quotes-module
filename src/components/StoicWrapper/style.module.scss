@@ -16,7 +16,9 @@ $__bp__mobile: "max-width: 475px";
   font-family: Montserrat, sans-serif;
 
   width: min(100vw, 400px);
-  padding: 2rem 2rem 1rem 2rem !important;
+  padding: 6px 1.5rem 1rem 1.5rem !important;
+
+  transition: opacity 1s ease-in-out;
 
   @media screen and ($__bp__mobile) {
     left: 0 !important;
@@ -24,8 +26,6 @@ $__bp__mobile: "max-width: 475px";
     width: auto;
     --base-margin: 0;
   }
-
-  transition: opacity 2s ease-in-out;
 }
 
 .show {

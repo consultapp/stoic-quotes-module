@@ -1,5 +1,7 @@
 .root {
   padding: 0;
+  display: grid;
+  gap: 1rem;
 
   &__blockquote {
     font-size: 1.1rem;

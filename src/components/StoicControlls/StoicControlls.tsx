@@ -6,7 +6,7 @@ interface Props {
   next: () => void;
 }
 
-export default function StoicControlls({ next }) {
+export default function StoicControlls({ next }: Props) {
   return (
     <div className={styles.root}>
       <Button variant={"ghost"}>
