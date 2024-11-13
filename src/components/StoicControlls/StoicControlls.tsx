@@ -9,14 +9,14 @@ interface Props {
 export default function StoicControlls({ next }: Props) {
   return (
     <div className={styles.root}>
-      <Button variant={"ghost"}>
-        <Pause size={16} />
+      <Button variant={"ghost"} size="icon">
+        <Pause />
       </Button>
-      <Button variant={"ghost"}>
-        <Play size={16} />
+      <Button variant={"ghost"} size="icon">
+        <Play />
       </Button>
-      <Button variant="ghost" onClick={next}>
-        <ArrowRight size={16} />
+      <Button variant="ghost" size="icon" onClick={next}>
+        <ArrowRight />
       </Button>
     </div>
   );

@@ -12,7 +12,7 @@ export default function StoicContainer() {
   const quotes = useQuotes();
   const [current, setCurrent] = useState(0);
 
-  const isEmpty = current >= quotes.length;
+  const isEmpty: boolean = current >= quotes.length;
 
   console.log("render++", render++);
 

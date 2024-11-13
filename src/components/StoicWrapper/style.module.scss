@@ -39,3 +39,9 @@ $__bp__mobile: "max-width: 475px";
 .hidden {
   display: none;
 }
+
+.close {
+  position: absolute;
+  right: 6px;
+  top: 6px;
+}

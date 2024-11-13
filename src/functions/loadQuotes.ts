@@ -9,7 +9,6 @@ import { ApiMessage, Quote } from "@/types";
 let loadingCount = 0;
 
 export function fillQuotesPool(currentCount: number, push: TPushQuote) {
-  console.log("currentCount:", currentCount, "loadingCount:", loadingCount);
   if (loadingCount <= 0)
     for (
       let i = currentCount;
@@ -20,7 +19,6 @@ export function fillQuotesPool(currentCount: number, push: TPushQuote) {
 }
 
 export function loadRandomQuote(push: TPushQuote) {
-  console.log("start loadRandomQuote");
   fetch(initialParams.serverApi)
     .then((data) => data.json())
     .then((message: ApiMessage) => {
@@ -31,7 +29,6 @@ export function loadRandomQuote(push: TPushQuote) {
       }
       if (message && message?.type === MESSAGE_TYPES.quote) {
         push(message as Quote);
-        console.log("finish:", message);
         return;
       }
     })

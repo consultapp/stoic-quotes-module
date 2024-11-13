@@ -3,6 +3,12 @@
   display: grid;
   gap: 1rem;
 
+  transition: opacity 0.7s linear;
+
+  & * {
+    opacity: 1;
+  }
+
   &__blockquote {
     font-size: 1.1rem;
     line-height: 1.5rem;
@@ -17,4 +23,12 @@
     letter-spacing: 0.15rem;
     text-align: right;
   }
+}
+
+.hide {
+  opacity: 0;
+}
+
+.show {
+  opacity: 1;
 }

@@ -2,7 +2,8 @@ import React, { useEffect, useRef, useState } from "react";
 import { Card } from "../ui/card";
 import styles from "./style.module.scss";
 import classNames from "classnames";
-import CloseButton from "../CloseButton/CloseButton";
+import { Button } from "../ui/button";
+import { X } from "lucide-react";
 
 type Props = {
   children: React.ReactElement;
@@ -29,14 +30,20 @@ export default function StoicWrapper({ children }: Props) {
       ref={wrapper}
     >
       {children}
-      <CloseButton
-        close={() => {
+
+      <Button
+        className={styles.close}
+        variant="ghost"
+        size="icon"
+        onClick={() => {
           setFade(true);
           setTimeout(() => {
             setClose(true);
-          }, 1000);
+          }, 700);
         }}
-      />
+      >
+        <X />
+      </Button>
     </Card>
   );
 }
