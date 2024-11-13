@@ -2,6 +2,7 @@ import { ArrowRight, Pause, Play } from "lucide-react";
 import { Button } from "../ui/button";
 import styles from "./style.module.scss";
 import { useCallback, useEffect, useRef, useState } from "react";
+import { initialParams } from "@/fixtures";
 
 interface Props {
   next: () => void;
@@ -15,7 +16,7 @@ export default function StoicControlls({ next }: Props) {
     clearInterval(timer.current);
     timer.current = setInterval(() => {
       next();
-    }, 60 * 1000);
+    }, Number(initialParams?.delay ?? 60) * 1000);
   }, [next, timer]);
 
   const stopTimer = useCallback(() => {

@@ -13,7 +13,7 @@ export default function StoicWrapper({ children }: Props) {
   const [close, setClose] = useState(false);
   const [fade, setFade] = useState<boolean | null>(null);
 
-  const wrapper = useRef<React.RefAttributes<HTMLDivElement>>();
+  const wrapper = useRef(null);
 
   useEffect(() => {
     setFade(false);
