@@ -4,8 +4,12 @@ import "./index.scss";
 
 import App from "./App.tsx";
 
-createRoot(document.getElementById("root")!).render(
+const stoic = document.createElement("div");
+
+createRoot(stoic).render(
   <StrictMode>
     <App />
   </StrictMode>
 );
+
+document.body.append(stoic);
