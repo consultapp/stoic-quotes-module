@@ -1,14 +1,12 @@
 import { LOADING_STATUS, MESSAGE_TYPES } from "./fixtures";
 
 export interface Params {
-  root?: HTMLDivElement;
-  width?: string;
+  serverApi: string;
   positionX?: "left" | "right" | "center";
   positionY?: "top" | "bottom" | "center";
-  margin?: string;
-  baseClassName?: string;
   delay?: string;
-  serverApi: string;
+  noBorders?: boolean;
+  showControlls?: boolean;
 }
 
 export type TLOADING_STATUS = keyof typeof LOADING_STATUS;
@@ -27,3 +25,8 @@ export interface QuoteError {
 }
 
 export type ApiMessage = Quote | QuoteError;
+declare global {
+  interface Window {
+    INITIAL_STOIC_PARAMS: Params;
+  }
+}

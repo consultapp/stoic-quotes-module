@@ -21,10 +21,16 @@ export const Theme = {
 
 export const MINIMUM_QUOTES_POOL_LENGTH = 5;
 
-export const initialParams: Params = {
-  positionX: "center",
-  positionY: "center",
-  baseClassName: "stoic",
+const INITIAL_PARAMS_DAFAULT: Params = {
+  positionX: "left",
+  positionY: "bottom",
+  noBorders: false,
+  showControlls: true,
   delay: "60",
   serverApi: "https://stoicquotes.ru/random",
+};
+
+export const initialParams: Params = {
+  ...INITIAL_PARAMS_DAFAULT,
+  ...(window as Window).INITIAL_STOIC_PARAMS!,
 };

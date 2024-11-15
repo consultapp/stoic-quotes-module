@@ -4,6 +4,7 @@ import styles from "./style.module.scss";
 import classNames from "classnames";
 import { Button } from "../ui/button";
 import { X } from "lucide-react";
+import { getPositionX, getPositionY } from "./fns";
 
 type Props = {
   children: React.ReactElement;
@@ -12,7 +13,6 @@ type Props = {
 export default function StoicWrapper({ children }: Props) {
   const [close, setClose] = useState(false);
   const [fade, setFade] = useState<boolean | null>(null);
-
   const wrapper = useRef(null);
 
   useEffect(() => {
@@ -25,7 +25,9 @@ export default function StoicWrapper({ children }: Props) {
         styles.stoic,
         fade !== null && !fade && styles.show,
         fade !== null && fade && styles.hide,
-        close && styles.hidden
+        close && styles.hidden,
+        getPositionX(),
+        getPositionY()
       )}
       ref={wrapper}
     >
