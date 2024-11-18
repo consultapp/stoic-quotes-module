@@ -26,6 +26,7 @@ const INITIAL_PARAMS_DAFAULT: Params = {
   positionY: "bottom",
   noBorders: false,
   showControlls: true,
+  autoPlay: true,
   delay: "60",
   serverApi: "https://stoicquotes.ru/random",
 };

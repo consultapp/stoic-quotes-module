@@ -5,6 +5,7 @@ export interface Params {
   positionX?: "left" | "right" | "center";
   positionY?: "top" | "bottom" | "center";
   delay?: string;
+  autoPlay?: boolean;
   noBorders?: boolean;
   showControlls?: boolean;
 }

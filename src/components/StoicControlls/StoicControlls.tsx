@@ -3,13 +3,14 @@ import { Button } from "../ui/button";
 import styles from "./style.module.scss";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { initialParams } from "@/fixtures";
+import classNames from "classnames";
 
 interface Props {
   next: () => void;
 }
 
 export default function StoicControlls({ next }: Props) {
-  const [play, setPlay] = useState(true);
+  const [play, setPlay] = useState(initialParams.autoPlay ?? true);
   const timer = useRef<ReturnType<typeof setInterval>>();
 
   const startTimer = useCallback(() => {
@@ -34,7 +35,12 @@ export default function StoicControlls({ next }: Props) {
   }, [play, setPlay, startTimer, stopTimer]);
 
   return (
-    <div className={styles.root}>
+    <div
+      className={classNames(
+        styles.root,
+        !initialParams.showControlls && styles.root_hideControlls
+      )}
+    >
       {play && (
         <Button variant={"ghost"} size="icon" onClick={() => setPlay(false)}>
           <Pause />

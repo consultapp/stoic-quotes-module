@@ -5,6 +5,7 @@ import classNames from "classnames";
 import { Button } from "../ui/button";
 import { X } from "lucide-react";
 import { getPositionX, getPositionY } from "./fns";
+import { initialParams } from "@/fixtures";
 
 type Props = {
   children: React.ReactElement;
@@ -34,7 +35,10 @@ export default function StoicWrapper({ children }: Props) {
       {children}
 
       <Button
-        className={styles.close}
+        className={classNames(
+          styles.close,
+          !initialParams.showControlls && styles.hidden
+        )}
         variant="ghost"
         size="icon"
         onClick={() => {
